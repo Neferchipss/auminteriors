@@ -1,0 +1,246 @@
+{
+  "lodha-adrina": {
+    "folder": "LODHA ADRINA (Mukesh sir)",
+    "hero_source": "IMG_2843(1).jpg",
+    "hero_ar": 0.667,
+    "gallery": [
+      {
+        "file": "gallery-01.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-02.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-03.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-04.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-05.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-06.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-07.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-08.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-09.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-10.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-11.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-12.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-13.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-14.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-15.jpg",
+        "ar": 0.667
+      },
+      {
+        "file": "gallery-16.jpg",
+        "ar": 0.667
+      }
+    ],
+    "total_candidates": 79
+  },
+  "bhoomi-shemana": {
+    "folder": "5bhk bhoomi Shemana",
+    "hero_source": "IMG_3303.JPG",
+    "hero_ar": 1.255,
+    "gallery": [
+      {
+        "file": "gallery-01.jpg",
+        "ar": 0.562
+      },
+      {
+        "file": "gallery-02.jpg",
+        "ar": 1.241
+      },
+      {
+        "file": "gallery-03.jpg",
+        "ar": 1.429
+      },
+      {
+        "file": "gallery-04.jpg",
+        "ar": 1.429
+      },
+      {
+        "file": "gallery-05.jpg",
+        "ar": 1.429
+      },
+      {
+        "file": "gallery-06.jpg",
+        "ar": 1.429
+      },
+      {
+        "file": "gallery-07.jpg",
+        "ar": 1.429
+      },
+      {
+        "file": "gallery-08.jpg",
+        "ar": 1.452
+      },
+      {
+        "file": "gallery-09.jpg",
+        "ar": 1.429
+      },
+      {
+        "file": "gallery-10.jpg",
+        "ar": 1.429
+      },
+      {
+        "file": "gallery-11.jpg",
+        "ar": 1.429
+      },
+      {
+        "file": "gallery-12.jpg",
+        "ar": 1.429
+      },
+      {
+        "file": "gallery-13.jpg",
+        "ar": 1.429
+      },
+      {
+        "file": "gallery-14.jpg",
+        "ar": 1.429
+      }
+    ],
+    "total_candidates": 45
+  },
+  "rajasthan-bungalow": {
+    "folder": "Bungalow Rajasthan",
+    "hero_source": "0fc0bf14-bf7c-4e6e-b89c-5a256c0fb9d7.JPG",
+    "hero_ar": 1.778,
+    "gallery": [
+      {
+        "file": "gallery-01.jpg",
+        "ar": 1.333
+      },
+      {
+        "file": "gallery-02.jpg",
+        "ar": 0.75
+      },
+      {
+        "file": "gallery-03.jpg",
+        "ar": 1.333
+      },
+      {
+        "file": "gallery-04.jpg",
+        "ar": 1.72
+      },
+      {
+        "file": "gallery-05.jpg",
+        "ar": 1.778
+      },
+      {
+        "file": "gallery-06.jpg",
+        "ar": 0.562
+      },
+      {
+        "file": "gallery-07.jpg",
+        "ar": 1.778
+      },
+      {
+        "file": "gallery-08.jpg",
+        "ar": 0.562
+      }
+    ],
+    "total_candidates": 9
+  },
+  "gundechaal-residence": {
+    "folder": "3bhk gundechaal",
+    "hero_source": "IMG_1513.PNG",
+    "hero_ar": 1.778,
+    "gallery": [
+      {
+        "file": "gallery-01.jpg",
+        "ar": 1.777
+      },
+      {
+        "file": "gallery-02.jpg",
+        "ar": 1.777
+      },
+      {
+        "file": "gallery-03.jpg",
+        "ar": 1.457
+      },
+      {
+        "file": "gallery-04.jpg",
+        "ar": 1.5
+      },
+      {
+        "file": "gallery-05.jpg",
+        "ar": 1.0
+      },
+      {
+        "file": "gallery-06.jpg",
+        "ar": 1.664
+      },
+      {
+        "file": "gallery-07.jpg",
+        "ar": 1.501
+      },
+      {
+        "file": "gallery-08.jpg",
+        "ar": 1.501
+      },
+      {
+        "file": "gallery-09.jpg",
+        "ar": 1.778
+      },
+      {
+        "file": "gallery-10.jpg",
+        "ar": 1.778
+      }
+    ],
+    "total_candidates": 15
+  },
+  "godrej-lounge": {
+    "folder": "Godrej waiting area",
+    "hero_source": "47DD1651-7A62-4637-9882-DC4ABA88D99E.PNG",
+    "hero_ar": 1.777,
+    "gallery": [
+      {
+        "file": "gallery-01.jpg",
+        "ar": 1.777
+      },
+      {
+        "file": "gallery-02.jpg",
+        "ar": 1.25
+      },
+      {
+        "file": "gallery-03.jpg",
+        "ar": 0.789
+      }
+    ],
+    "total_candidates": 4
+  }
+}
