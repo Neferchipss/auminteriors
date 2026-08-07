@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/pages.css" />
 
 </head>
-<body>
+<body class="has-logo-intro">
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
 <defs>
 <symbol id="i-plan" viewBox="0 0 24 24"><path d="M4 20L14 4l6 16M8.5 12.5h7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="4" r="1.1" fill="currentColor" stroke="none"/></symbol>
@@ -37,8 +37,8 @@
 
 <header class="site-header">
   <a href="index.html" class="logo">
-    <svg class="logo-arch" viewBox="0 0 120 120"><path d="M44,108 L44,50 A16,16 0 0 1 76,50 L76,108"/><path d="M36,108 L36,50 A24,24 0 0 1 84,50 L84,108"/><path d="M28,108 L28,50 A32,32 0 0 1 92,50 L92,108"/><path d="M20,108 L20,50 A40,40 0 0 1 100,50 L100,108"/><path d="M12,108 L12,50 A48,48 0 0 1 108,50 L108,108"/></svg>
-    <span class="logo-text"><span class="logo-script">Aum</span><span class="logo-caps">Design Studio</span></span>
+    <img class="logo-mark" src="assets/img/logo-mark.png" alt="Aum" />
+    <span class="logo-caps">Design Studio</span>
   </a>
   <nav class="main-nav">
     <a href="index.html" class="active">Home</a>
@@ -57,22 +57,10 @@
       <source src="assets/video/site-hero-ambient.mp4" type="video/mp4" />
     </video>
   </div>
-  <svg class="hero-arches" viewBox="0 0 600 380" aria-hidden="true">
-    <path d="M230,360 L230,130 A70,70 0 0 1 370,130 L370,360" style="animation-delay:.1s"/>
-    <path d="M200,360 L200,130 A100,100 0 0 1 400,130 L400,360" style="animation-delay:.22s"/>
-    <path d="M170,360 L170,130 A130,130 0 0 1 430,130 L430,360" style="animation-delay:.34s"/>
-    <path d="M140,360 L140,130 A160,160 0 0 1 460,130 L460,360" style="animation-delay:.46s"/>
-    <path d="M110,360 L110,130 A190,190 0 0 1 490,130 L490,360" style="animation-delay:.58s"/>
-  </svg>
-  <div class="hero-portal-glow"></div>
-  <div class="wrap hero-content">
-    <div class="hero-eyebrow reveal in-view"><svg class="icon"><use href="#i-pin"></use></svg> MUMBAI &nbsp;·&nbsp; RESIDENTIAL &amp; COMMERCIAL INTERIORS</div>
-    <h1 class="reveal in-view reveal-delay-1">The art of<br><em>quiet&nbsp;living.</em></h1>
-    <p class="hero-sub reveal in-view reveal-delay-2"><b>AUM Design Studio</b> — Planning, design and turnkey execution for spaces that favour restraint over noise. Based in Prabhadevi, Mumbai.</p>
-    <div class="hero-ctas reveal in-view reveal-delay-2">
-      <a href="#projects" class="btn">View Projects <svg class="icon"><use href="#i-arrow-right"></use></svg></a>
-      <a href="#contact" class="btn ghost">Start a Conversation <svg class="icon"><use href="#i-arrow-right"></use></svg></a>
-    </div>
+  <div class="hero-logo-backdrop" id="hero-logo-backdrop"></div>
+  <div class="hero-logo-intro" id="hero-logo-intro">
+    <video id="hero-logo-video" autoplay muted playsinline preload="auto" poster="assets/video/logo-intro-poster.jpg" src="assets/video/logo-intro.mp4"></video>
+    <img id="hero-logo-still" src="assets/img/logo-mark-big.png" alt="Aum Design Studio" />
   </div>
   <div class="scroll-cue"><span class="line"></span>Scroll</div>
 </section>
@@ -105,7 +93,7 @@
         <div class="eyebrow"><svg class="icon"><use href="#i-grid"></use></svg> Selected Work</div>
         <h2>Five projects,<br><em>fully realised.</em></h2>
       </div>
-      <p class="projects-note reveal reveal-delay-1">Every commission carried from planning through to the final styling pass — shown here in brief, in full on the project page.</p>
+      <p class="projects-note reveal reveal-delay-1">Every commission carried from planning through to the final styling pass — shown here in brief, in full on the project page. One more is on the drawing board now.</p>
     </div>
     <div class="project-grid reveal reveal-delay-1">
       <a class="p-card p1" href="projects/lodha-adrina.html">
@@ -142,9 +130,16 @@
       </a>
       <a class="p-card p5" href="projects/godrej-lounge.html">
         <div class="frame" style="position:absolute;inset:0;"><img src="assets/img/godrej-lounge/card.jpg" alt="Godrej — Waiting Lounge" loading="lazy" /></div>
-        
+
         <div class="p-caption">
           <div><span class="p-kicker"><svg class="icon"><use href="#i-building"></use></svg> Commercial — Lounge</span><span class="p-name">Godrej — Waiting Lounge</span></div>
+          <div class="p-arrow"><svg class="icon"><use href="#i-arrow-right"></use></svg></div>
+        </div>
+      </a>
+      <a class="p-card p6 card-soon" href="projects/krishvi-escape.html">
+        <div class="frame" style="position:absolute;inset:0;"><img src="assets/img/krishvi-escape/floorplan.jpg" alt="Krishvi Escape" loading="lazy" /></div>
+        <div class="p-caption">
+          <div><span class="p-kicker soon"><span class="pulse-dot"></span> Residential — 3BHK · Coming Soon</span><span class="p-name">Krishvi Escape</span></div>
           <div class="p-arrow"><svg class="icon"><use href="#i-arrow-right"></use></svg></div>
         </div>
       </a>
@@ -232,8 +227,8 @@
   </div>
   <div class="wrap">
     <div class="logo reveal in-view">
-      <svg class="logo-arch" viewBox="0 0 120 120"><path d="M44,108 L44,50 A16,16 0 0 1 76,50 L76,108"/><path d="M36,108 L36,50 A24,24 0 0 1 84,50 L84,108"/><path d="M28,108 L28,50 A32,32 0 0 1 92,50 L92,108"/><path d="M20,108 L20,50 A40,40 0 0 1 100,50 L100,108"/><path d="M12,108 L12,50 A48,48 0 0 1 108,50 L108,108"/></svg>
-      <span class="logo-text"><span class="logo-script">Aum</span><span class="logo-caps">Design Studio</span></span>
+      <img class="logo-mark" src="assets/img/logo-mark.png" alt="Aum" />
+      <span class="logo-caps">Design Studio</span>
     </div>
     <h2 class="reveal reveal-delay-1">Let's design your<br><em>next quiet room.</em></h2>
     <a href="https://www.instagram.com/aum_interiordesign/" target="_blank" rel="noopener" class="btn reveal reveal-delay-2">Start a Conversation <svg class="icon"><use href="#i-arrow-right"></use></svg></a>
@@ -248,7 +243,7 @@
   <div class="wrap">
     <div class="footer-top">
       <div>
-        <a href="index.html" class="logo"><svg class="logo-arch" viewBox="0 0 120 120"><path d="M44,108 L44,50 A16,16 0 0 1 76,50 L76,108"/><path d="M36,108 L36,50 A24,24 0 0 1 84,50 L84,108"/><path d="M28,108 L28,50 A32,32 0 0 1 92,50 L92,108"/><path d="M20,108 L20,50 A40,40 0 0 1 100,50 L100,108"/><path d="M12,108 L12,50 A48,48 0 0 1 108,50 L108,108"/></svg><span class="logo-text"><span class="logo-script">Aum</span><span class="logo-caps">Design Studio</span></span></a>
+        <a href="index.html" class="logo"><img class="logo-mark" src="assets/img/logo-mark.png" alt="Aum" /><span class="logo-caps">Design Studio</span></a>
         <p>A Mumbai interior design studio led by Omkar Patil and Jaya Ushakoyal — planning, design and turnkey execution for residential and commercial spaces.</p>
       </div>
       <div class="footer-col"><h4>Studio</h4>
@@ -262,6 +257,7 @@
 <a href="projects/gundechaal-residence.html">The Gundecha Residence</a>
 <a href="projects/rajasthan-bungalow.html">The Rajasthan Bungalow</a>
 <a href="projects/godrej-lounge.html">Godrej — Waiting Lounge</a>
+<a href="projects/krishvi-escape.html">Krishvi Escape <em>— Coming Soon</em></a>
       </div>
       <div class="footer-col"><h4>Contact</h4>
         <span>Prabhadevi, Mumbai 400025</span>

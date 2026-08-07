@@ -80,6 +80,7 @@ section{position:relative;}
 
 /* ---------- Logo ---------- */
 .logo{display:flex;align-items:center;gap:12px;}
+.logo-mark{height:34px;width:auto;flex:none;display:block;}
 .logo-arch{width:34px;height:34px;flex:none;}
 .logo-arch path{fill:none;stroke:currentColor;stroke-width:1;opacity:.85;}
 .logo-script{font-family:var(--logo-script);font-size:1.9rem;color:var(--ivory);display:block;margin-bottom:-2px;line-height:1;}

@@ -3,6 +3,75 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
+  /* Landing logo: plays centered, then the chroma-removed still shrinks/moves left (no black box);
+     once resting, scrolling crossfades it into the header ribbon logo. */
+  (function () {
+    if (!document.body.classList.contains("has-logo-intro")) return;
+    var wrap = document.getElementById("hero-logo-intro");
+    var video = document.getElementById("hero-logo-video");
+    var backdrop = document.getElementById("hero-logo-backdrop");
+    var headerLogo = document.querySelector("header.site-header .logo");
+    if (!wrap || !video || !headerLogo) return;
+
+    if (reduced) {
+      wrap.querySelector("video").style.display = "none";
+      wrap.querySelector("img").style.display = "block";
+      if (backdrop) backdrop.classList.add("backdrop-out");
+      headerLogo.style.opacity = "1";
+      return;
+    }
+
+    var settled = false;
+    var restParams = null;
+    var ended = false;
+
+    function computeRest() {
+      var rect = wrap.getBoundingClientRect();
+      var centerX = rect.left + rect.width / 2;
+      var restScale = 0.95;
+      var leftPad = Math.min(96, Math.max(24, window.innerWidth * 0.07));
+      var restWidth = rect.width * restScale;
+      var targetCenterX = leftPad + restWidth / 2;
+      return { dx: targetCenterX - centerX, dy: 0, scale: restScale };
+    }
+
+    function onEnded() {
+      if (ended) return;
+      ended = true;
+      restParams = computeRest();
+      wrap.classList.add("intro-swapped", "intro-animate");
+      if (backdrop) backdrop.classList.add("backdrop-out");
+      requestAnimationFrame(function () {
+        wrap.style.transform = "translate(-50%,-50%) translate(" + restParams.dx + "px," + restParams.dy + "px) scale(" + restParams.scale + ")";
+      });
+      setTimeout(function () {
+        wrap.classList.remove("intro-animate");
+        settled = true;
+      }, 950);
+    }
+
+    video.addEventListener("ended", onEnded);
+    setTimeout(onEnded, 3200);
+
+    var fadeRange = 280;
+    var raf = null;
+    var onScroll = function () {
+      raf = null;
+      var progress = Math.max(0, Math.min(1, window.scrollY / fadeRange));
+      headerLogo.style.opacity = String(progress);
+      if (settled && restParams) {
+        var lift = -20 * progress;
+        var extraShrink = 0.08 * progress;
+        wrap.style.opacity = String(1 - progress);
+        wrap.style.transform = "translate(-50%,-50%) translate(" + restParams.dx + "px," + (restParams.dy + lift) + "px) scale(" + (restParams.scale - extraShrink) + ")";
+      }
+    };
+    document.addEventListener("scroll", function () {
+      if (!raf) raf = requestAnimationFrame(onScroll);
+    }, { passive: true });
+    onScroll();
+  })();
+
   /* Subtle hero parallax */
   if (!reduced) {
     var parallaxEls = document.querySelectorAll(".parallax");
@@ -50,7 +119,7 @@
   });
 
   /* Explicit play() for autoplay background videos (some contexts ignore the attribute) */
-  document.querySelectorAll(".hero-media video[autoplay], .p-hero video[autoplay]").forEach(function (v) {
+  document.querySelectorAll(".hero-media video[autoplay], .p-hero video[autoplay], .hero-logo-intro video[autoplay]").forEach(function (v) {
     var tryPlay = function () { v.play().catch(function () {}); };
     if (v.readyState >= 2) tryPlay();
     v.addEventListener("loadeddata", tryPlay);
