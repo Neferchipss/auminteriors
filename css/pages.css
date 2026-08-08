@@ -180,10 +180,18 @@ body.has-logo-intro header.site-header .logo{opacity:0;transition:opacity .2s li
 .about > *{position:relative;z-index:1;}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;min-height:74vh;align-items:stretch;
   gap:clamp(0px,2vw,26px);padding:clamp(0px,2vw,26px);}
-/* the media column must not drive the row height — a portrait photo used to
-   stretch the row to ~1080px and leave the copy panel half empty */
+/* The media column must not DRIVE the row height — a portrait photo used to
+   stretch the row to ~1080px and leave the copy panel half empty. It should
+   still FILL whatever height the row ends up at, hence absolute + inset:0. */
 .about-media{position:relative;min-height:clamp(420px,62vh,620px);}
 .about-media .frame{position:absolute;inset:0;height:100%;border-radius:var(--r-lg);}
+/* On desktop the door runs the full height of the section, with the Omkar and
+   Jaya write-up centred beside it. */
+@media (min-width:821px){
+  .about-grid{min-height:min(92vh,880px);}
+  .about-media{min-height:0;}
+  .about-media .frame img{object-position:center 38%;}
+}
 .about-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(30px,4.4vw,64px);
   border-radius:var(--r-lg);
   background:var(--g-fill);border:1px solid var(--g-edge);
