@@ -32,7 +32,7 @@
   --script:'Alex Brush', cursive;
   --logo-script:'Halimun', cursive;
   --ease: cubic-bezier(.22,.61,.36,1);
-  --header-h: 84px;
+  --header-h: 88px;   /* stacked logo lockup: 34 mark + 5 gap + 8 caps + 40 padding */
 
   /* ---------- Glass tokens (on ink) ---------- */
   --g-fill:        rgba(237,227,208,.045);
@@ -197,13 +197,17 @@ a.glass:hover::before, button.glass:hover::before{opacity:1;}
 .on-paper .btn::after{background:linear-gradient(100deg, transparent 20%, rgba(255,255,255,.6) 50%, transparent 80%);}
 .on-paper .btn:hover{border-color:var(--ink);background:var(--gp-fill-strong);box-shadow:var(--gp-cast-lift), var(--gp-spec);}
 
-/* ---------- Logo ---------- */
-.logo{display:flex;align-items:center;gap:12px;}
+/* ---------- Logo ----------
+   Correct lockup: the AUM mark with DESIGN STUDIO stacked BENEATH it,
+   not set beside it. */
+.logo{display:flex;flex-direction:column;align-items:center;gap:5px;}
 .logo-mark{height:34px;width:auto;flex:none;display:block;}
 .logo-arch{width:34px;height:34px;flex:none;}
 .logo-arch path{fill:none;stroke:currentColor;stroke-width:1;opacity:.85;}
 .logo-script{font-family:var(--logo-script);font-size:1.9rem;color:var(--ivory);display:block;margin-bottom:-2px;line-height:1;}
-.logo-caps{font-family:var(--sans);font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:var(--brass-bright);display:block;}
+/* the trailing letter-space would push the caps visually off-centre */
+.logo-caps{font-family:var(--sans);font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--brass-bright);display:block;margin-right:-.32em;line-height:1;}
 
 /* ---------- Header (glass ribbon) ---------- */
 header.site-header{
@@ -407,7 +411,7 @@ footer.site-footer > *{position:relative;z-index:1;}
     --g-blur:blur(12px) saturate(1.2);
     --g-blur-heavy:blur(18px) saturate(1.25);
     --g-blur-light:blur(7px) saturate(1.15);
-    --header-h:70px;
+    --header-h:74px;   /* measured with the stacked logo at 30px mark */
   }
   body::before{opacity:.028;}          /* grain costs a full-screen composite */
   body::after{box-shadow:inset 0 0 90px rgba(10,8,6,.45);}
