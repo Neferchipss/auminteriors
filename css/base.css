@@ -63,12 +63,24 @@
 }
 
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;   /* iOS must not re-scale type on rotate */
+  text-size-adjust:100%;
+  scroll-padding-top:calc(var(--header-h) + 12px); /* anchor links clear the fixed ribbon */
+}
 body{
   margin:0;background:var(--ink);color:var(--ivory);
   font-family:var(--sans);font-weight:300;
   -webkit-font-smoothing:antialiased;overflow-x:clip;
+  -webkit-tap-highlight-color:rgba(217,188,130,.18);
 }
+/* announced to screen readers and to crawlers, painted for nobody */
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
+}
+:focus-visible{outline:2px solid var(--brass-bright);outline-offset:3px;border-radius:2px;}
 img,svg,video{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
 section{position:relative;}
@@ -249,6 +261,16 @@ header.site-header nav.main-nav a:not(.icon-link):hover::after{transform:scaleX(
     background:radial-gradient(60% 44% at 50% 12%, rgba(183,147,88,.18), transparent 70%);
   }
   header.site-header nav.main-nav.open{opacity:1;pointer-events:auto;}
+  /* The overlay is fixed with inset:0, but backdrop-filter on the header makes
+     the header a containing block for fixed children — the panel would size to
+     the 64px ribbon. Dropping the header's own glass while the menu is open
+     hands the overlay back to the viewport. */
+  body.nav-open header.site-header,
+  body.nav-open header.site-header.solid{
+    background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;
+    box-shadow:none;border-color:transparent;
+  }
+  body.nav-open header.site-header .logo{opacity:0;pointer-events:none;}
   header.site-header nav.main-nav a:not(.icon-link){font-size:1.1rem;position:relative;z-index:1;}
   header.site-header nav.main-nav .icon-link{position:relative;z-index:1;}
   .nav-toggle{display:flex;z-index:210;}
@@ -365,7 +387,74 @@ footer.site-footer > *{position:relative;z-index:1;}
 }
 
 @media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
   .reveal{opacity:1;transform:none;transition:none;}
   .marquee-track{animation:none;}
   .btn::after{display:none;}
+  .scroll-cue .line{animation:none;}
+  .p-card:hover, .np-link:hover, .masonry .frame:hover,
+  .service-item:hover, .process-item:hover, .fp-glass:hover{transform:none;}
+}
+
+/* ========================================================================
+   Mobile / touch pass
+   ======================================================================== */
+
+/* Stacked backdrop-filters are the most expensive thing on this page. Phones
+   get materially cheaper blur radii — the glass still reads at small sizes. */
+@media (max-width:880px){
+  :root{
+    --g-blur:blur(12px) saturate(1.2);
+    --g-blur-heavy:blur(18px) saturate(1.25);
+    --g-blur-light:blur(7px) saturate(1.15);
+    --header-h:70px;
+  }
+  body::before{opacity:.028;}          /* grain costs a full-screen composite */
+  body::after{box-shadow:inset 0 0 90px rgba(10,8,6,.45);}
+}
+
+/* Touch targets: 44px minimum on anything tappable */
+@media (hover:none), (pointer:coarse){
+  .icon-link{width:44px;height:44px;}
+  .nav-toggle{width:44px;height:44px;}
+  .footer-col a, .footer-col span{padding-block:7px;margin-bottom:2px;}
+  .breadcrumb{gap:8px;row-gap:4px;}
+  .breadcrumb a{padding-block:6px;}
+  .btn{padding:16px 26px;}
+  .lightbox-close, .lightbox-nav{width:48px;height:48px;}
+  /* no hover state on touch — don't leave elements stuck in their lit form */
+  .frame:hover img, .frame:hover video{transform:none;}
+}
+
+@media (max-width:880px){
+  header.site-header{padding:14px clamp(16px,4vw,24px);}
+  header.site-header.solid{padding-block:10px;}
+  .logo-mark{height:30px;}
+  .wrap{padding-inline:clamp(16px,5vw,28px);}
+  .marquee-track span{font-size:1rem;padding-inline:18px;gap:18px;}
+  .marquee::before,.marquee::after{width:14vw;}
+  .footer-bottom{justify-content:flex-start;gap:18px;}
+  /* 44px minimum regardless of pointer type — narrow viewport implies thumbs */
+  .nav-toggle{width:44px;height:44px;}
+  .icon-link{width:40px;height:40px;}
+}
+
+/* Lightbox: side arrows sit on top of the image on a narrow screen —
+   move the whole control set to a bar along the bottom. */
+@media (max-width:720px){
+  .lightbox img{max-width:94vw;max-height:70vh;}
+  .lightbox-nav.prev, .lightbox-nav.next{top:auto;bottom:22px;transform:none;}
+  .lightbox-nav.prev{left:calc(50% - 88px);}
+  .lightbox-nav.next{right:calc(50% - 88px);}
+  .lightbox-nav.prev:hover{transform:none;}
+  .lightbox-nav.next:hover{transform:none;}
+  .lightbox-count{bottom:34px;}
+  .lightbox-close{top:16px;right:16px;}
+}
+
+/* Short landscape phones: full-height sections leave no room to read */
+@media (max-height:520px) and (orientation:landscape){
+  .hero{min-height:460px;}
+  .p-hero{height:auto;min-height:420px;padding-top:calc(var(--header-h) + 20px);}
+  header.site-header nav.main-nav{gap:14px;overflow-y:auto;padding-block:70px;}
 }

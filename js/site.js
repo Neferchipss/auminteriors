@@ -153,14 +153,28 @@
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.querySelector(".main-nav");
   if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = nav.classList.toggle("open");
+    /* body.nav-open drops the header's backdrop-filter. An ancestor with
+       backdrop-filter becomes the containing block for fixed descendants, so
+       the inset:0 overlay was resolving against the 64px header box instead of
+       the viewport — the full-screen menu was never full-screen. */
+    var setNav = function (open) {
+      nav.classList.toggle("open", open);
+      document.body.classList.toggle("nav-open", open);
+      document.body.style.overflow = open ? "hidden" : "";
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    toggle.addEventListener("click", function () {
+      setNav(!nav.classList.contains("open"));
     });
     nav.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        nav.classList.remove("open");
-      });
+      a.addEventListener("click", function () { setNav(false); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("open")) setNav(false);
+    });
+    /* leaving the mobile breakpoint with the menu open would strand the lock */
+    window.matchMedia("(min-width: 881px)").addEventListener("change", function (e) {
+      if (e.matches && nav.classList.contains("open")) setNav(false);
     });
   }
 

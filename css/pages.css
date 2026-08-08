@@ -415,8 +415,19 @@ body.has-logo-intro header.site-header .logo{opacity:0;transition:opacity .2s li
   opacity:0;transform:scale(.9);transition:opacity .3s ease, transform .3s var(--ease);}
 .fp-prop-card:hover .icon{opacity:1;transform:scale(1);}
 
-@media (max-width:820px){.fp-layout{grid-template-columns:1fr;}.fp-props{flex-direction:row;}.fp-prop-card{aspect-ratio:1/1;}}
-@media (max-width:520px){.fp-props{flex-direction:column;}.fp-prop-card{aspect-ratio:16/11;}}
+/* Once the layout is one column, `.fp-props{height:100%}` resolves against an
+   indefinite height, so `flex:1 1 0` collapses every card to a thin bar.
+   Stop stretching to a column height that no longer exists and let the
+   aspect-ratio set the size. */
+@media (max-width:820px){
+  .fp-layout{grid-template-columns:1fr;}
+  .fp-props{flex-direction:row;height:auto;}
+  .fp-prop-card{aspect-ratio:1/1;flex:1 1 0;}
+}
+@media (max-width:520px){
+  .fp-props{flex-direction:column;height:auto;}
+  .fp-prop-card{aspect-ratio:16/11;flex:0 0 auto;width:100%;}
+}
 
 /* ---------- Coming soon (upcoming project) ---------- */
 .tag.tag-soon{border-color:var(--g-edge-lit);color:var(--brass-bright);position:relative;background:var(--g-fill-lit);}
@@ -466,3 +477,76 @@ body.has-logo-intro header.site-header .logo{opacity:0;transition:opacity .2s li
 .np-link.next{text-align:right;}
 .np-link.next .eyebrow{flex-direction:row;justify-content:flex-end;width:100%;}
 @media (max-width:700px){.nextprev-grid{grid-template-columns:1fr;}.np-link.next{text-align:left;}.np-link.next .eyebrow{justify-content:flex-start;}}
+
+/* ========================================================================
+   Mobile / touch layout pass
+   ======================================================================== */
+@media (max-width:820px){
+  /* grid-auto-rows:13.5vw is sized for a 12-col desktop grid. Once every card
+     spans the full width, 3 of those rows is only ~160px on a phone — far too
+     short for a hero image. Re-scale the row to the narrow viewport. */
+  .project-grid{grid-auto-rows:25vw;gap:12px;}
+  .p-card{border-radius:var(--r-sm);}
+  .p-card .p-caption{padding:13px 14px;left:9px;right:9px;bottom:9px;}
+  .p-caption .p-name{font-size:1.12rem;}
+  .p-caption .p-kicker{font-size:.56rem;letter-spacing:.18em;}
+  .p-arrow{width:30px;height:30px;}
+}
+
+@media (max-width:640px){
+  .project-grid{grid-auto-rows:34vw;}
+  .scroll-cue{bottom:20px;left:16px;padding:9px 15px 9px 12px;font-size:.58rem;letter-spacing:.24em;}
+  .scroll-cue .line{height:20px;}
+
+  /* the facts bar reads as three stacked rows, not a wrapped flex line */
+  .contact-facts{flex-direction:column;align-items:flex-start;gap:20px;padding:22px;
+    margin-top:clamp(36px,6vh,54px);border-radius:var(--r-md);}
+  .contact-facts > div{width:100%;}
+  .cta h2{margin-bottom:26px;}
+
+  .about-grid{padding:12px;gap:12px;}
+  .about-copy{border-radius:var(--r-md);padding:26px 22px;}
+  .about-media{min-height:300px;}
+  .about-media .frame{border-radius:var(--r-md);}
+  .about-sign{font-size:1.6rem;}
+
+  .knob-media{max-width:min(78vw,340px);}
+  .knob-play-cue .icon{width:38px;height:38px;}
+
+  .projects-head{margin-bottom:30px;}
+  .service-item{padding:18px 16px;}
+  .process-item{padding:24px 20px;}
+
+  /* a 9:16 video at full bleed runs ~700px tall and pushes everything off-screen */
+  .video-frame{border-radius:var(--r-sm);}
+  .video-frame.portrait{aspect-ratio:9/16;max-width:min(100%,340px);}
+  .video-play .icon{width:26px;height:26px;padding:17px;}
+
+  .p-hero-tags{gap:7px;}
+  .tag{padding:8px 13px;font-size:.6rem;letter-spacing:.14em;}
+  .p-hero .reel-tag{top:calc(var(--header-h) + 10px);right:16px;padding:8px 13px;font-size:.58rem;}
+  .p-intro p{padding:24px 20px;border-radius:var(--r-md);}
+  .meta-item{padding:18px 16px;}
+
+  .masonry{column-gap:10px;}
+  .masonry .frame{margin-bottom:10px;}
+  /* the zoom affordance is hover-only on desktop; on touch it must just be there */
+  .masonry .frame .icon{opacity:.85;transform:none;width:14px;height:14px;padding:7px;}
+
+  .fp-glass{padding:16px;border-radius:var(--r-md);}
+  .fp-glass .fp-tag{font-size:.56rem;letter-spacing:.14em;margin-top:14px;}
+  .fp-glass .fp-tag .icon{opacity:.9;width:16px;height:16px;}
+  .fp-prop-card .icon{opacity:.85;transform:none;}
+  .fp-single, .fp-layout{margin-top:24px;}
+
+  .np-link{padding:34px 22px;border-radius:var(--r-md);}
+  .p-teaser .wrap{padding-inline:22px;border-radius:var(--r-md);}
+}
+
+/* Very narrow phones */
+@media (max-width:400px){
+  .project-grid{grid-auto-rows:38vw;}
+  .p-caption .p-name{font-size:1rem;}
+  .p-hero h1{font-size:2.1rem;}
+  .contact-facts .val{font-size:1.02rem;}
+}

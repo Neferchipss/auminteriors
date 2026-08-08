@@ -1,0 +1,21 @@
+{
+  "name": "AUM Design Studio",
+  "short_name": "AUM",
+  "description": "AUM Design Studio is an interior design practice in Prabhadevi, Mumbai, led by Omkar Patil and Jaya Usakoyal \u2014 space planning, interior design and turnkey execution for homes and commercial spaces across Mumbai.",
+  "start_url": "https://neferchipss.github.io/auminteriors/",
+  "display": "standalone",
+  "background_color": "#1B1712",
+  "theme_color": "#1B1712",
+  "icons": [
+    {
+      "src": "https://neferchipss.github.io/auminteriors/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://neferchipss.github.io/auminteriors/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
